@@ -31,8 +31,8 @@ public class Ground {
     
     groundImageSet = new ArrayList<GroundImage>();
     
-    //first ground image:
-    for(int i=0; i<3; i++) {
+
+    for(int i = 0; i < 3; i++) {
       GroundImage obj = new GroundImage();
       obj.image = image;
       obj.x = 0;

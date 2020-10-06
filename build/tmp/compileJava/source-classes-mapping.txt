@@ -1,3 +1,6 @@
+world/ucode/Menu.java
+ world.ucode.Menu
+ world.ucode.Menu$MenuImage
 world/ucode/Dino.java
  world.ucode.Dino
  world.ucode.Dino$DinoImages
@@ -7,10 +10,10 @@ world/ucode/Ground.java
 world/ucode/Obstacles.java
  world.ucode.Obstacles
  world.ucode.Obstacles$Obstacle
+world/ucode/Resource.java
+ world.ucode.Resource
 world/ucode/UserInterface.java
  world.ucode.UserInterface
  world.ucode.UserInterface$1
 world/ucode/GamePanel.java
  world.ucode.GamePanel
-world/ucode/Resource.java
- world.ucode.Resource

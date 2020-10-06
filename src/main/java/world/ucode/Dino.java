@@ -42,6 +42,10 @@ public class Dino {
         foot = NO_FOOT;
     }
 
+    public void menu(Graphics g) {
+
+    }
+
     public void create(Graphics g) {
         dinoBottom = dinoTop + image.getHeight();
 
@@ -98,9 +102,12 @@ public class Dino {
         Rectangle dino = new Rectangle();
         dino.x = dinoStartX;
 
-        if(state == JUMPING && !topPointReached) dino.y = dinoTop - jumpFactor;
-        else if(state == JUMPING && topPointReached) dino.y = dinoTop + jumpFactor;
-        else if(state != JUMPING) dino.y = dinoTop;
+        if(state == JUMPING && !topPointReached)
+            dino.y = dinoTop - jumpFactor;
+        else if(state == JUMPING && topPointReached)
+            dino.y = dinoTop + jumpFactor;
+        else if(state != JUMPING)
+            dino.y = dinoTop;
 
         dino.width = image.getWidth();
         dino.height = image.getHeight();
