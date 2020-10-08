@@ -17,11 +17,20 @@ class GamePanel extends JPanel implements KeyListener, Runnable {
   public static int WIDTH;
   public static int HEIGHT;
   private Thread animator;
-  
+
+  public static enum STATE {
+    MENU,
+    GAME,
+    HELP
+  };
+
+ // public static STATE State = STATE.MENU;
+  private Menu menu;
+  private Help help;
+
   private boolean running = false;
   private boolean gameOver = false;
 
-  Menu menu;
   Ground ground;
   Dino dino;
   Obstacles obstacles;
@@ -32,26 +41,39 @@ class GamePanel extends JPanel implements KeyListener, Runnable {
     WIDTH = UserInterface.WIDTH;
     HEIGHT = UserInterface.HEIGHT;
 
+    if (State == STATE.GAME) {
+      ground = new Ground(HEIGHT);
+      dino = new Dino();
+      obstacles = new Obstacles((int) (WIDTH * 1.5));
 
-    menu = new Menu(HEIGHT);
-    ground = new Ground(HEIGHT);
-    dino = new Dino();
-    obstacles = new Obstacles((int)(WIDTH * 1.5));
-
-    score = 0;
-    
-    setSize(WIDTH, HEIGHT);
-    setVisible(true);
+      score = 0;
+    }
+      setSize(WIDTH, HEIGHT);
+      setVisible(true);
   }
-  
+
+
   public void paint(Graphics g) {
     super.paint(g);
-    g.setFont(new Font("Courier New", Font.BOLD, 25));
-    g.drawString("SCORE: ", getWidth() - 200, 40);
-    g.drawString(Integer.toString(score), getWidth() - 45, 40);
-    ground.create(g);
-    dino.create(g);
-    obstacles.create(g);
+    menu = new Menu();
+    help = new Help();
+
+    if (State == STATE.GAME) {
+      g.setFont(new Font("Courier New", Font.BOLD, 25));
+      g.drawString("SCORE: ", getWidth() - 200, 40);
+      g.drawString(Integer.toString(score), getWidth() - 45, 40);
+      ground.create(g);
+      dino.create(g);
+      obstacles.create(g);
+    } else if (State == STATE.MENU){
+      this.addMouseListener(new MouseInput());
+      menu.paint(g);
+    } else if (State == STATE.HELP){
+      this.addMouseListener(new MouseInput());
+      help.paint(g);
+    }
+
+
   }
   
   public void run() {

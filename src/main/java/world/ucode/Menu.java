@@ -1,44 +1,27 @@
 package world.ucode;
 
-import world.ucode.Resource;
-
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.util.*;
-
-import javax.imageio.ImageIO;
-
+import java.awt.*;
 
 public class Menu {
-    private class MenuImage {
-        BufferedImage image;
-        int x;
-    }
+    public Rectangle playButton = new Rectangle(GamePanel.WIDTH / 2 - 50, 150, 100, 50);
+    public Rectangle helpButton = new Rectangle(GamePanel.WIDTH / 2 - 50, 250, 100, 50);
+    public Rectangle quitButton = new Rectangle(GamePanel.WIDTH / 2 - 50, 350, 100, 50);
 
-    public static int MENU_Y;
+    public void paint(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
 
-    private BufferedImage image;
+        Font fnt0 = new Font("arial", Font.BOLD, 50);
+        g.setFont(fnt0);
+        g.setColor(Color.black);
+        g.drawString("T-REX Menu", GamePanel.WIDTH / 3 - 10, 70);
 
-    private ArrayList<Menu.MenuImage> menuImageSet;
-
-    public Menu(int panelHeight) {
-        MENU_Y = (int) (panelHeight - 0.25 * panelHeight);
-
-        try {
-            image = new Resource().getResourceImage("../../images/Sun.png");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        menuImageSet = new ArrayList<Menu.MenuImage>();
-
-
-        for (int i = 0; i < 3; i++) {
-            Menu.MenuImage obj = new Menu.MenuImage();
-            obj.image = image;
-            obj.x = 0;
-            menuImageSet.add(obj);
-        }
+        Font fnt1 = new Font("arial", Font.BOLD, 30);
+        g.setFont(fnt1);
+        g.drawString("Play", playButton.x + 18, playButton.y + 33);
+        g.drawString("Help", helpButton.x + 18, helpButton.y + 33);
+        g.drawString("Quit", quitButton.x + 18, quitButton.y + 33);
+        g2d.draw(playButton);
+        g2d.draw(helpButton);
+        g2d.draw(quitButton);
     }
 }
