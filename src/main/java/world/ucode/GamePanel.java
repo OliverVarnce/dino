@@ -5,12 +5,7 @@ import javax.imageio.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
 
-import world.ucode.Ground;
-import world.ucode.Dino;
-import world.ucode.Obstacles;
-import world.ucode.Menu;
 
 class GamePanel extends JPanel implements KeyListener, Runnable {
   
@@ -24,7 +19,7 @@ class GamePanel extends JPanel implements KeyListener, Runnable {
     HELP
   };
 
- // public static STATE State = STATE.MENU;
+  public static STATE State = STATE.MENU;
   private Menu menu;
   private Help help;
 
@@ -36,27 +31,28 @@ class GamePanel extends JPanel implements KeyListener, Runnable {
   Obstacles obstacles;
 
   private int score;
-  
+
   public GamePanel() {
     WIDTH = UserInterface.WIDTH;
     HEIGHT = UserInterface.HEIGHT;
 
-    if (State == STATE.GAME) {
+
       ground = new Ground(HEIGHT);
       dino = new Dino();
       obstacles = new Obstacles((int) (WIDTH * 1.5));
 
       score = 0;
-    }
+
       setSize(WIDTH, HEIGHT);
       setVisible(true);
   }
 
-
+  @Override
   public void paint(Graphics g) {
     super.paint(g);
     menu = new Menu();
     help = new Help();
+    System.out.println(GamePanel.State);
 
     if (State == STATE.GAME) {
       g.setFont(new Font("Courier New", Font.BOLD, 25));
@@ -65,10 +61,11 @@ class GamePanel extends JPanel implements KeyListener, Runnable {
       ground.create(g);
       dino.create(g);
       obstacles.create(g);
-    } else if (State == STATE.MENU){
+    } else if (State == STATE.MENU) {
       this.addMouseListener(new MouseInput());
       menu.paint(g);
-    } else if (State == STATE.HELP){
+//      State = STATE.GAME;
+    } else if (State == STATE.HELP) {
       this.addMouseListener(new MouseInput());
       help.paint(g);
     }
@@ -77,7 +74,7 @@ class GamePanel extends JPanel implements KeyListener, Runnable {
   }
   
   public void run() {
-    running = true;
+      running = true;
 
     while(running) {
       updateGame();
@@ -121,7 +118,7 @@ class GamePanel extends JPanel implements KeyListener, Runnable {
     if(e.getKeyChar() == ' ') {    
       if(gameOver) reset();
       if (animator == null || !running) {
-        System.out.println("Game starts");        
+        System.out.println("Game starts");
         animator = new Thread(this);
         animator.start();     
         dino.startRunning();   

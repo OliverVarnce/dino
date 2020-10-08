@@ -22,20 +22,22 @@ public class MouseInput implements MouseListener {
         //PlayButton
         if (mx >= 350 && mx <= 449) {
             if (my >= 178 && my <= 222) {
-                System.out.println(GamePanel.State);
+//                System.out.println("-------------------------");
+//                System.out.println(GamePanel.State);
+//                System.out.println("-------------------------");
                 //Pressed PlayButton
                 GamePanel.State = GamePanel.STATE.GAME;
-                System.out.println(GamePanel.State);
+//                System.out.println("-------------------------");
+//                System.out.println(GamePanel.State);
+//                System.out.println("-------------------------");
             }
         }
 
         //HelpButton
         if (mx >= 350 && mx <= 449) {
             if (my >= 250 && my <= 300) {
-                System.out.println(GamePanel.State);
                 //Pressed PlayButton
                 GamePanel.State = GamePanel.STATE.HELP;
-                System.out.println(GamePanel.State);
             }
         }
 
