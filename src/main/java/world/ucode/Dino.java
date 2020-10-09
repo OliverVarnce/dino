@@ -42,11 +42,7 @@ public class Dino {
         foot = NO_FOOT;
     }
 
-    public void menu(Graphics g) {
-
-    }
-
-    public void create(Graphics g) {
+   public void create(Graphics g) {
         dinoBottom = dinoTop + image.getHeight();
 
         switch(state) {

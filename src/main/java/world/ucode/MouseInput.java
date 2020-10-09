@@ -11,25 +11,15 @@ public class MouseInput implements MouseListener {
     }
 
     public void mousePressed(MouseEvent e) {
-
-//        public Rectangle playButton = new Rectangle(GamePanel.WIDTH / 2 - 50, 150, 100, 50);
-//        public Rectangle helpButton = new Rectangle(GamePanel.WIDTH / 2 - 50, 250, 100, 50);
-//        public Rectangle quitButton = new Rectangle(GamePanel.WIDTH / 2 - 50, 350, 100, 50);
-
         int mx = e.getX();
         int my = e.getY();
 
         //PlayButton
         if (mx >= 350 && mx <= 449) {
             if (my >= 178 && my <= 222) {
-//                System.out.println("-------------------------");
-//                System.out.println(GamePanel.State);
-//                System.out.println("-------------------------");
                 //Pressed PlayButton
                 GamePanel.State = GamePanel.STATE.GAME;
-//                System.out.println("-------------------------");
-//                System.out.println(GamePanel.State);
-//                System.out.println("-------------------------");
+                GamePanel.setPressMouse(true);
             }
         }
 
@@ -44,6 +34,7 @@ public class MouseInput implements MouseListener {
         //QuitButton
         if (mx >= 350 && mx <= 449) {
             if (my >= 350 && my <= 400) {
+                if (GamePanel.State == GamePanel.STATE.MENU)
                System.exit(0);
             }
         }
